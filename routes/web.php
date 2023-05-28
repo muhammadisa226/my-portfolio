@@ -18,6 +18,13 @@ Route::get('/', function () {
 });
 
 // login with google with sociallite
-Route::get('/auth',[AuthController::class, "index"]);
-Route::get('/auth/redirect', [AuthController::class, "redirect"]);
-Route::get('/auth/callback', [AuthController::class, "callback"]);
+Route::redirect('home', 'dashboard');
+Route::get('/auth',[AuthController::class, "index"])->name('login')->middleware('guest');
+Route::get('/auth/redirect', [AuthController::class, "redirect"])->middleware('guest');
+Route::get('/auth/callback', [AuthController::class, "callback"])->middleware('guest');
+Route::get('/auth/logout', [AuthController::class, "logout"]);
+
+//Dashboard Endpoint
+Route::get('/dashboard', function(){
+    return 'Selamat Datang di halaman Dashboard';
+})->middleware('auth');

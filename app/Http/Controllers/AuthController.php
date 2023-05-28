@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+
 class AuthController extends Controller
+
 {
 
     function index(){
@@ -30,10 +34,16 @@ class AuthController extends Controller
                     'name' => $name,
                     'google_id'=>$id
                 ]);
-            return '<h1>Selamat Anda Sudah Masuk</h1>';
+                Auth::login($user);
+            return redirect()->to('dashboard');
         }else{
             return redirect()->to('auth')->with('error' ,'your account dissalowed login');
         }
 
 
-    }}
+    }
+function logout(){
+Auth::logout();
+return redirect()->to('auth');
+}
+}
