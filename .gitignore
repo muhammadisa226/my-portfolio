@@ -16,4 +16,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-clientid_secret.json
+googleid_and_googlesecret.json
