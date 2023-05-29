@@ -12,7 +12,10 @@
     <main class="container vh-100 d-flex justify-content-center align-items-center">
         <div class="col-6 mx-auto text-center px-5 py-5 border rounded bg-white">
             @if ($message = Session::get('error'))
-                <div class="alert alert-danger">{{ $message }}</div>
+            <div class=" alert alert-warning alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             @endif
             <a href='{{ url('auth/redirect') }}' class="btn border border-primary"><img width="20px"
                     style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
@@ -22,3 +25,4 @@
     </main>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

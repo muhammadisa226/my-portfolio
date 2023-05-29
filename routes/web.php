@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,12 @@ Route::get('/auth/callback', [AuthController::class, "callback"])->middleware('g
 Route::get('/auth/logout', [AuthController::class, "logout"]);
 
 //Dashboard Endpoint
-Route::get('/dashboard', function(){
-    return 'Selamat Datang di halaman Dashboard';
-})->middleware('auth');
+
+Route::prefix('/dashboard')->middleware('auth')->group(
+function(){
+    Route::get('/',function(){
+        return view('dashboard.layout');
+    });
+    Route::resource('/pages',PagesController::class);
+
+});
